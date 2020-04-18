@@ -1,0 +1,26 @@
+logging:
+  level:
+    com:
+      netflix:
+        eureka: OFF
+        discovery: OFF
+    root: DEBUG
+spring:
+  freemarker:
+    template-loader-path: classpath:/templates/
+    prefer-file-system-access: false
+  application:
+    name: eurekaservice
+  profiles:
+    active: dev
+  cloud:
+    config:
+      uri: http://localhost:8585/config-server
+      name: ${spring.application.name}
+      fail-fast: true
+eureka:
+  client:
+    registerWithEureka: false
+    fetchRegistry: false
+    serviceUrl:
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka
